@@ -1,0 +1,22 @@
+{
+  "id": "default",
+  "default_attributes": {
+    "docker-prometheus": {
+      "user": "docker-prometheus",
+      "group": "docker-prometheus",
+      "config": {
+        "version": "2.19.2",
+        "jobs": [
+          {
+            "name": "default",
+            "port": 9100
+          }
+        ]
+      },
+      "runtime": {
+        "a": "a",
+        "b": "b"
+      }
+    }
+  }
+}

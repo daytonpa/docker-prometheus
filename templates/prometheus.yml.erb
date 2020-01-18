@@ -1,0 +1,32 @@
+# Prometheus v<%= @prom_version %> global config
+# Do not modify this file.  It is provisioned via Chef.
+
+# Global settings
+global:
+  scrape_interval: <%= @scrape_interval %>
+  scrape_timeout: <%= @scrape_timeout %>
+  evaluation_interval: <%= @evaluation_interval %>
+
+# Alertmanager config
+alerting:
+  alertmanagers:
+    - static_configs:
+      - targets:
+        # not yet...
+
+# Scrape rules
+rule_files:
+<% @targets.each do |tgt| %>
+  - '<%= @rules_dir %>/<%= tgt['name'] %>.yml'
+<% end %>
+
+scrape_configs:
+<% @targets.each do |tgt| %>
+  - job_name: <%= tgt['name'] %>
+    metrics_path: <%= tgt['scrape_path'] %>
+    static_configs: 
+    - targets: 
+    <% tgt['ip_addresses'].each do |ipaddr| %>
+      - <%= ipaddr %>:<%= tgt['port'] %>
+    <% end %>  
+<% end %>

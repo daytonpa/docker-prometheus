@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "INFO:: Starting Prometheus Metrics Service"
+echo "INFO::   -- version <%= @prom_version %>"
+echo "INFO::"
+echo "INFO::"
+echo "INFO::   - Validating configuration files:"
+rules_files=($(ls <%= @rules_dir %> ))
+echo "INFO::"
+
+<%= @prom_bin %> <%= generate_prometheus_runtime_flags %>

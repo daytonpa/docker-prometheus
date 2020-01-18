@@ -1,0 +1,7 @@
+# <%= @target_name %> recording rules
+
+groups:
+  - name: <%= @target_name %>
+    rules:
+    - record: job:http_in_progress_requests_<%= @target_name %>:count
+      expr: count(http_inprogress_requests{job="<%= @target_name %>"})
